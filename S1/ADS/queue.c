@@ -18,7 +18,7 @@ int main()
                 printf("\n Queue is Full");
             else
             {
-                printf(" Enter no %d:\n",j++);
+                printf(" Enter element %d:\n",j++);
                 scanf("%d",&queue[rear++]);
             }
             break;

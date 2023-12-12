@@ -105,7 +105,7 @@ void main() {
 				printf("%d ",heads[i]->data);
 			break;
 			case 3:
-			printf("enter the two  sets to union\n");
+			printf("enter the two  sets to union\n\t");
 			printf("Enter first set : ");
 			scanf("%d",&x);
 			printf("Enter second set : ");

@@ -1,0 +1,137 @@
+mysql> select * from student;
++---------+------+-------+-------------+--------------+
+| stname  | stid | stage | starea      | stbranch     |
++---------+------+-------+-------------+--------------+
+| ashly   | 101  |    19 | nehru nagar | aeronautical |
+| havesh  | 102  |    18 | ayyanthole  | marine       |
+| ruthvik | 103  |    20 | nehru nagar | aerospace    |
+| harith  | 104  |    20 | west fort   | mechanical   |
++---------+------+-------+-------------+--------------+
+4 rows in set (0.02 sec)
+
+mysql> rename table student to students;
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> select stname, stid+100 "stidno" from students;
++---------+--------+
+| stname  | stidno |
++---------+--------+
+| ashly   |    201 |
+| havesh  |    202 |
+| ruthvik |    203 |
+| harith  |    204 |
++---------+--------+
+4 rows in set (0.05 sec)
+
+mysql> select distinct starea from students;
++-------------+
+| starea      |
++-------------+
+| nehru nagar |
+| ayyanthole  |
+| west fort   |
++-------------+
+3 rows in set (0.11 sec)
+
+mysql> select stname,stage from students where stage<=19;
++--------+-------+
+| stname | stage |
++--------+-------+
+| ashly  |    19 |
+| havesh |    18 |
++--------+-------+
+2 rows in set (0.03 sec)
+
+mysql> select stname,starea, stid from students where stid between 102 and 104;
++---------+-------------+------+
+| stname  | starea      | stid |
++---------+-------------+------+
+| havesh  | ayyanthole  | 102  |
+| ruthvik | nehru nagar | 103  |
+| harith  | west fort   | 104  |
++---------+-------------+------+
+3 rows in set (0.01 sec)
+
+mysql> select stname, starea from students where starea like '%g%';
++---------+-------------+
+| stname  | starea      |
++---------+-------------+
+| ashly   | nehru nagar |
+| ruthvik | nehru nagar |
++---------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select stname ,stid from students where stid>102 and starea='nehru nagar';
++---------+------+
+| stname  | stid |
++---------+------+
+| ruthvik | 103  |
++---------+------+
+1 row in set (0.00 sec)
+
+mysql> select stname ,stid from students where stid>102 or starea='nehru nagar';
++---------+------+
+| stname  | stid |
++---------+------+
+| ashly   | 101  |
+| ruthvik | 103  |
+| harith  | 104  |
++---------+------+
+3 rows in set (0.00 sec)
+
+mysql> alter table students add stpocket varchar(20);
+Query OK, 0 rows affected (0.74 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update students set stpocket=750 where stid=101;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from students;
++---------+------+-------+-------------+--------------+----------+
+| stname  | stid | stage | starea      | stbranch     | stpocket |
++---------+------+-------+-------------+--------------+----------+
+| ashly   | 101  |    19 | nehru nagar | aeronautical | 750      |
+| havesh  | 102  |    18 | ayyanthole  | marine       | NULL     |
+| ruthvik | 103  |    20 | nehru nagar | aerospace    | NULL     |
+| harith  | 104  |    20 | west fort   | mechanical   | NULL     |
++---------+------+-------+-------------+--------------+----------+
+4 rows in set (0.01 sec)
+
+mysql> update students set stpocket=500 where stid=102;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set stpocket=250 where stid=103;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set stpocket=100 where stid=104;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from students;
++---------+------+-------+-------------+--------------+----------+
+| stname  | stid | stage | starea      | stbranch     | stpocket |
++---------+------+-------+-------------+--------------+----------+
+| ashly   | 101  |    19 | nehru nagar | aeronautical | 750      |
+| havesh  | 102  |    18 | ayyanthole  | marine       | 500      |
+| ruthvik | 103  |    20 | nehru nagar | aerospace    | 250      |
+| harith  | 104  |    20 | west fort   | mechanical   | 100      |
++---------+------+-------+-------------+--------------+----------+
+4 rows in set (0.02 sec)
+
+mysql> delete from students where stid=101;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from students;
++---------+------+-------+-------------+------------+----------+
+| stname  | stid | stage | starea      | stbranch   | stpocket |
++---------+------+-------+-------------+------------+----------+
+| havesh  | 102  |    18 | ayyanthole  | marine     | 500      |
+| ruthvik | 103  |    20 | nehru nagar | aerospace  | 250      |
+| harith  | 104  |    20 | west fort   | mechanical | 100      |
++---------+------+-------+-------------+------------+----------+
+3 rows in set (0.00 sec)
+
+

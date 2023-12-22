@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>BookDetails</title>
+	</head>
+	<body>
+	
+	<form method="POST">
+	<table cellspacting=10 algin="center">
+	<h4>Book Details</h4>
+	Book No  :<input type="number" name="bookno" required><br><br>
+	Title    :<input type="text" name="name" required><br><br>
+	Author   :<input type="text" name="author" required><br><br>
+	Edition  :<input type="text" name="edition" required><br><br>
+	Publisher:<input type="text" name="publisher" required><br><br>
+	 <button type="submit" class="registerbtn">Subimt</button><br><br>
+
+	</table>
+</form>
+<a href=".search.php">Search</a>
+</body>
+</html>
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tdss";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " .$conn->connect_error);
+}
+if($_POST){
+$BookNo=$_POST["bookno"];
+$Title=$_POST["name"];
+$Author=$_POST["author"];
+$Edition=$_POST["edition"];
+$Publisher=$_POST["publisher"];
+
+$sql = "INSERT INTO book (bookno,title,authors,edition,publisher) VALUES ('$BookNo','$Title','$Author','$Edition','$Publisher')";
+
+$rs=mysqli_query($conn,$sql);
+
+if($rs)
+{
+	echo "Booked Records Inserted";
+}
+$conn->close();
+}
+?>
+

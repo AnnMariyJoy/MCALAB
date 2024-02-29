@@ -1,0 +1,89 @@
+mysql> create table student2(rollno int,name varchar(20),course varchar(20));
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> insert into student2 values(1,'fatema','MCA');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> savepoint a;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student2;
++--------+--------+--------+
+| rollno | name   | course |
++--------+--------+--------+
+|      1 | fatema | MCA    |
++--------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into student2 values(2,'mariya','MCA');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student2 values(3,'libin','MCA');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> savepoint a;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student2;
++--------+--------+--------+
+| rollno | name   | course |
++--------+--------+--------+
+|      1 | fatema | MCA    |
+|      2 | mariya | MCA    |
+|      3 | libin  | MCA    |
++--------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> rollback to a;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student2;
++--------+--------+--------+
+| rollno | name   | course |
++--------+--------+--------+
+|      1 | fatema | MCA    |
+|      2 | mariya | MCA    |
+|      3 | libin  | MCA    |
++--------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student2 values(4,'josmy','MCA');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> rollback to a;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from student2;
++--------+--------+--------+
+| rollno | name   | course |
++--------+--------+--------+
+|      1 | fatema | MCA    |
+|      2 | mariya | MCA    |
+|      3 | libin  | MCA    |
++--------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student2 values(5,'arun','MCA');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select * from student2;
++--------+--------+--------+
+| rollno | name   | course |
++--------+--------+--------+
+|      1 | fatema | MCA    |
+|      2 | mariya | MCA    |
+|      3 | libin  | MCA    |
+|      5 | arun   | MCA    |
++--------+--------+--------+
+4 rows in set (0.01 sec)
+
+

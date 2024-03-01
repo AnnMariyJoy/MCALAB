@@ -122,4 +122,17 @@ mysql> select * from Department;
 +--------+----------+------------+
 4 rows in set (0.00 sec)
 
+update Employee set Salary=100000 where Empid=103;
+Query OK, 1 row affected (0.27 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> select *  from Employee;
++-------+----------+-------+--------+
+| Empid | Empname  | Dept  | Salary |
++-------+----------+-------+--------+
+|   103 | josmy    | B com | 100000 |
+|   104 | libin    | BBA   |   1000 |
+|   102 | malavika | Bca   |   2000 |
+|   101 | meenu    | Mca   |   3000 |
++-------+----------+-------+--------+
+4 rows in set (0.02 sec)
 

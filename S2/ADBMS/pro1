@@ -36,20 +36,6 @@ mysql> desc student;
 +--------+-------------+------+-----+---------+-------+
 6 rows in set (0.05 sec)
 
- update Employee set Salary=100000 where Empid=103;
-Query OK, 1 row affected (0.27 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-mysql> select *  from Employee;
-+-------+----------+-------+--------+
-| Empid | Empname  | Dept  | Salary |
-+-------+----------+-------+--------+
-|   103 | josmy    | B com | 100000 |
-|   104 | libin    | BBA   |   1000 |
-|   102 | malavika | Bca   |   2000 |
-|   101 | meenu    | Mca   |   3000 |
-+-------+----------+-------+--------+
-4 rows in set (0.02 sec)
-
 mysql>-- alter table student rename column Mark to TotalMark;
 ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column Mark to TotalMark' at line 1
 

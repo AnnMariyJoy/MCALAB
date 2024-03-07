@@ -10,18 +10,18 @@ public class employee{
 	        Scanner s = new Scanner(System.in);
 	        count=c;
 	          for(i=0;i<c;i++){
-	              System.out.println("Enter the Emp_No:");
+	              System.out.println("Enter the EmpNo:");
 	              eNo[i]=s.nextInt();
-	              System.out.println("Enter the Emp_Name:");
+	              System.out.println("Enter the EmpName:");
 	              eName[i]=s.next();
-	              System.out.println("Enter the Emp_Salary:");
+	              System.out.println("Enter the EmpSalary:");
 	              eSalary[i]=s.nextFloat();   
 	        } 
 	    }
 	    
 	    void printinfo(int c){
 	        count =c;
-	        System.out.println("____Employee Information____");
+	        System.out.println("Employee Informations");
 	        for(i=0;i<count;i++)
 	        {
 	           System.out.println("No:"+eNo[i]);
@@ -56,7 +56,7 @@ public class employee{
 	        obj.count = sc.nextInt();
 	        obj.getinfo(obj.count);
 	        obj.printinfo(obj.count);
-	        System.out.println("\n__To check a specific record___");
+	        System.out.println("\nTo check a specific record");
 	        System.out.println("Enter the Emp_No:");
 	        int e = sc.nextInt();
 	        obj.displayinfo(e,obj.count);

@@ -1,66 +1,46 @@
-import java.util.*;
-public class employee{
-		 int[] eNo = new int[20];
-	    int count,i,e;
-	    String[] eName = new String[50];
-	    float[] eSalary = new float[20];
-	    
-	    
-	    void getinfo(int c){
-	        Scanner s = new Scanner(System.in);
-	        count=c;
-	          for(i=0;i<c;i++){
-	              System.out.println("Enter the EmpNo:");
-	              eNo[i]=s.nextInt();
-	              System.out.println("Enter the EmpName:");
-	              eName[i]=s.next();
-	              System.out.println("Enter the EmpSalary:");
-	              eSalary[i]=s.nextFloat();   
-	        } 
-	    }
-	    
-	    void printinfo(int c){
-	        count =c;
-	        System.out.println("Employee Informations");
-	        for(i=0;i<count;i++)
-	        {
-	           System.out.println("No:"+eNo[i]);
-	           System.out.println("Name:"+eName[i]);
-	           System.out.println("Salary:"+eSalary[i]);    
-	        }       
-	    }
-	    
-	    void displayinfo(int emp_no, int c) {
-	    	int flag=0;
-	    	e = emp_no;
-	    	count = c;
-	    	for(i=0;i<count;i++)
-	    	{
-	    		if(eNo[i]==e)
-	    		{   
-	    	    	System.out.println("No:"+eNo[i]);
-	    	        System.out.println("Name:"+eName[i]);
-	    	        System.out.println("Salary:"+eSalary[i]);
-	    	        flag++;
-	    		}
-	    				
-	    	} 
-	    	if(flag==0)
-	    		System.out.println("Record Not Found!");
-	   }
-	               
-	    public static void main(String args[]){
-	        employee obj = new employee();
-	        Scanner sc = new Scanner(System.in);
-	        System.out.println("Enter the number of records to be stored:");
-	        obj.count = sc.nextInt();
-	        obj.getinfo(obj.count);
-	        obj.printinfo(obj.count);
-	        System.out.println("\nTo check a specific record");
-	        System.out.println("Enter the Emp_No:");
-	        int e = sc.nextInt();
-	        obj.displayinfo(e,obj.count);
-	        sc.close();     
-	    }   
-	}
+import java.util.Scanner;
+public class employee {
+    int eNo;
+    String eName;
+    double eSalary;
+    public void getdetails(){
+        System.out.println("\nEnter the Employee details");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Employee number : ");
+        eNo=sc.nextInt();
+        System.out.println("Employee Name : ");
+        sc.nextLine();
+        eName=sc.nextLine();
+        System.out.println("Employee Salary : ");
+        eSalary=sc.nextDouble(); 
+    }
+    void display(){
+        System.out.println("Empolyee No :"+eNo);
+        System.out.println("Name :"+eName);
+        System.out.println("Salary "+eSalary+"\n");
+    }
+    public static void main(String[] args) {
+        System.out.println("\nEnter the No. of Employee's:");
+        Scanner sc1 = new Scanner(System.in);
+        int num = sc1.nextInt();
+        employee arr[]=new employee[num];
+        for(int i =0;i<num;i++){
+               arr[i]=new employee();
+               arr[i].getdetails();
 
+        }
+        System.out.println("\nInformations of all the employee's:");
+        for(int i=0;i<num;i++){
+            arr[i].display();
+     }
+    
+     System.out.println("\nEnter the Employee Number to get details of a employee:");
+     int num2= sc1.nextInt();
+     for(int i=0;i<num;i++){
+         if(arr[i].eNo==num2){
+        System.out.println("\nEmployee details");
+         arr[i].display();
+         }
+        }    
+    }
+}

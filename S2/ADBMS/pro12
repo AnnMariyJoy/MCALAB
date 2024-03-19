@@ -1,0 +1,29 @@
+mysql> use Mca;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+
+mysql> delimiter //
+mysql> create procedure fact( in n int)
+    -> begin
+    -> declare f int default 1;
+    -> while n>0 do
+    -> set f=f*n;
+    -> set n=n-1;
+    -> end while;
+    -> select concat(f) as result;
+    -> end //
+Query OK, 0 rows affected (0.27 sec)
+
+mysql> delimiter ;
+mysql> call fact(5);
++--------+
+| result |
++--------+
+| 120    |
++--------+
+1 row in set (0.05 sec)
+
+Query OK, 0 rows affected (0.08 sec)
+

@@ -1,0 +1,28 @@
+mysql> use Mca;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> delimiter //
+mysql> create procedure display()
+    -> begin
+    -> select * from student;
+    -> end
+    -> //
+Query OK, 0 rows affected (0.46 sec)
+
+mysql> delimiter ;
+mysql> call display();
++------+--------+-------+
+| roll | name   | couse |
++------+--------+-------+
+|    1 | Ammu   | MCA   |
+|    2 | Amal   | MCA   |
+|    3 | Anju   | MCA   |
+|    4 | Sherin | MCA   |
++------+--------+-------+
+4 rows in set (0.12 sec)
+
+Query OK, 0 rows affected (0.12 sec)
+
+

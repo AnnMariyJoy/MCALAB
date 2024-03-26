@@ -1,0 +1,77 @@
+mysql> use Mca;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> CREATE TABLE Std1 (
+    -> studentID INT PRIMARY KEY,
+    -> Name VARCHAR(20),
+    -> sub1 INT,
+    -> sub2 INT,
+    -> sub3 INT,
+    -> sub4 INT,
+    -> total INT,
+    -> per_marks INT,
+    -> grade VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> INSERT INTO Std1(studentID,Name,sub1,sub2,sub3,sub4)
+    -> VALUES
+    -> (1,'Student1',0,0,0,0),
+    -> (2,'Student2',0,0,0,0);
+Query OK, 2 rows affected (0.06 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from Std1;
++-----------+----------+------+------+------+------+-------+-----------+-------+
+| studentID | Name     | sub1 | sub2 | sub3 | sub4 | total | per_marks | grade |
++-----------+----------+------+------+------+------+-------+-----------+-------+
+|         1 | Student1 |    0 |    0 |    0 |    0 |  NULL |      NULL | NULL  |
+|         2 | Student2 |    0 |    0 |    0 |    0 |  NULL |      NULL | NULL  |
++-----------+----------+------+------+------+------+-------+-----------+-------+
+2 rows in set (0.00 sec)
+
+mysql> DELIMITER //
+mysql> CREATE TRIGGER std_before_update
+    -> BEFORE UPDATE ON Std1
+    -> FOR EACH ROW
+    -> BEGIN
+    -> DECLARE total_marks INT;
+    -> DECLARE per_marks INT;
+    -> DECLARE grade VARCHAR(20);
+    -> SET total_marks = NEW.sub1 + NEW.sub2 + NEW.sub3 + NEW.sub4 ;
+    -> SET per_marks=total_marks/4;
+    -> IF per_marks >= 90 THEN
+    ->   SET grade = 'EXCELLENT';
+    -> ELSEIF per_marks >= 75 AND per_marks < 90 THEN
+    ->   SET grade = 'VERY GOOD';
+    -> ELSEIF per_marks >= 60 AND per_marks < 75 THEN
+    ->   SET grade = 'GOOD';
+    -> ELSEIF per_marks >= 40 AND per_marks < 65 THEN
+    ->   SET grade = 'AVERAGE';
+    -> ELSE
+    ->   SET grade = 'NOT PROMOTED';
+    -> END IF;
+    -> SET NEW.total = total_marks;
+    -> SET NEW.per_marks = per_marks;
+    -> SET NEW.grade = grade;
+    -> END;
+    -> //
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> DELIMITER ;
+mysql> UPDATE Std1 SET sub1 = 90, sub2 = 75, sub3 = 90, sub4 = 95 WHERE studentID=1;
+Query OK, 1 row affected (0.17 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Std1;
++-----------+----------+------+------+------+------+-------+-----------+-----------+
+| studentID | Name     | sub1 | sub2 | sub3 | sub4 | total | per_marks | grade     |
++-----------+----------+------+------+------+------+-------+-----------+-----------+
+|         1 | Student1 |   90 |   75 |   90 |   95 |   350 |        88 | VERY GOOD |
+|         2 | Student2 |    0 |    0 |    0 |    0 |  NULL |      NULL | NULL      |
++-----------+----------+------+------+------+------+-------+-----------+-----------+
+2 rows in set (0.00 sec)
+
+

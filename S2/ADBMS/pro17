@@ -1,0 +1,80 @@
+mysql> mysql> CREATE Student(
+    -> id int NOT NULL AUTO_INCREMENT,
+    -> name varchar(45) NOT NULL,
+    -> class int NOT NULL,
+    -> email_id varchar(65) NOT NULL,
+    -> PRIMARY KEY (id)
+    -> );
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> INSERT INTO Student(name,class,email_id)
+    -> VALUES
+    -> ('stephen',6,'stephen@gmail.com'),
+    -> ('bob',7,'bob@gmail.com'),
+    -> ('steven',8,'steven@gmail.com'),
+    -> ('alexandar',7,'alexandar@gmail.com');
+Query OK, 4 rows affected (0.07 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE  Student_log(
+    -> user VARCHAR(45) NOT NULL,
+    -> descriptions VARCHAR(65) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.36 sec)
+
+mysql> SELECT * FROM Student;
++----+-----------+-------+---------------------+
+| id | name      | class | email_id            |
++----+-----------+-------+---------------------+
+|  1 | stephen   |     6 | stephen@gmail.com   |
+|  2 | bob       |     7 | bob@gmail.com       |
+|  3 | steven    |     8 | steven@gmail.com    |
+|  4 | alexandar |     7 | alexandar@gmail.com |
++----+-----------+-------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger after_update_stdnts
+    -> after update
+    -> on Student
+    -> for each row
+    -> begin
+    -> insert into Student_log values(user(),
+    -> concat('Update Student Record',OLD.name,'Previous Class:',
+    -> OLD.class,'Present Class',New.class));
+    -> end//
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> delimiter ;
+mysql> select * from Student_log;
+Empty set (0.01 sec)
+
+mysql> update Students set class=class+1;
+ERROR 1146 (42S02): Table 'Mca.Students' doesn't exist
+mysql> update Student set class=class+1;
+Query OK, 4 rows affected (0.12 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from Student_log;
++----------------+--------------------------------------------------------------+
+| user           | descriptions                                                 |
++----------------+--------------------------------------------------------------+
+| root@localhost | Update Student RecordstephenPrevious Class:6Present Class7   |
+| root@localhost | Update Student RecordbobPrevious Class:7Present Class8       |
+| root@localhost | Update Student RecordstevenPrevious Class:8Present Class9    |
+| root@localhost | Update Student RecordalexandarPrevious Class:7Present Class8 |
++----------------+--------------------------------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Student;
++----+-----------+-------+---------------------+
+| id | name      | class | email_id            |
++----+-----------+-------+---------------------+
+|  1 | stephen   |     7 | stephen@gmail.com   |
+|  2 | bob       |     8 | bob@gmail.com       |
+|  3 | steven    |     9 | steven@gmail.com    |
+|  4 | alexandar |     8 | alexandar@gmail.com |
++----+-----------+-------+---------------------+
+4 rows in set (0.00 sec)
+
+

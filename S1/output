@@ -1,0 +1,48 @@
+17)
+
+COMPUTATION OF AREA OF DIFFERENT FIGURES
+-----------------------------------------
+
+RECTANGLE
+----------
+Enter the length:
+2
+Enter the breadth:
+3
+Area of the rectangle:6
+
+TRIANGLE
+----------
+Enter the base:
+3
+Enter the height:
+4
+Area of the triangle:6.0
+
+SQUARE
+--------
+Enter the side:
+3
+Area of the square:9
+
+CIRCLE
+--------
+Enter the radius:
+2
+Area of the circle:12.566370614359172
+18)
+
+ARITHMETIC OPERATIONS
+---------------------
+Enter any two numbers to be operated with:
+1000 583 
+
+SUM=1583.0
+
+DIFFERENCE=417.0
+
+PRODUCT=583000.0
+
+QUOTIENT=1.7152659
+
+

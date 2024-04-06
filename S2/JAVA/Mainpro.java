@@ -1,43 +1,41 @@
 import java.util.Scanner;
 
 class Even implements Runnable {
-    int count;
+    private int n;
 
-    Even(int count) {
-        this.count = count;
+    Even(int n) {
+        this.n = n;
     }
 
     public void run() {
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i <= n; i++) {
             if (i % 2 == 0) {
-                System.out.println("Even Number: " + i);
+                System.out.println("Even: " + i);
             }
         }
     }
 }
 
 class Fibonacci implements Runnable {
-    int count;
-    long[] fibonacci;
+    private int n;
 
-    Fibonacci(int count) {
-        this.count = count;
-        this.fibonacci = new long[count];
+    Fibonacci(int n) {
+        this.n = n;
     }
 
     public void run() {
-        this.fibonacci[0] = 0;
-        this.fibonacci[1] = 1;
-        this.fibonacci[2] = 1;
+        int a = 0;
+        int b = 1;
+        int c;
 
-        for (int i = 3; i < count; i++) {
-            this.fibonacci[i] = this.fibonacci[i - 1] + this.fibonacci[i - 2];
+        System.out.println("Fibonacci: " + a);
+        System.out.println("Fibonacci: " + b);
 
-            if (i > 91) {
-                break;
-            }
-
-            System.out.println("Fibonacci Number: " + this.fibonacci[i]);
+        for (int i = 2; i <= n; i++) {
+            c = a + b;
+            System.out.println("Fibonacci: "+c);
+            a = b;
+            b = c;
         }
     }
 }
@@ -45,15 +43,15 @@ class Fibonacci implements Runnable {
 public class Mainpro {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int fiboCount, evenCount;
 
-        System.out.println("Enter the number of Fibonacci Numbers to be listed: ");
-        fiboCount = scanner.nextInt();
-        System.out.println("Enter the number of Even Numbers to be listed: ");
-        evenCount = scanner.nextInt();
+        System.out.println("Enter the number of Fibonacci numbers to generate: ");
+        int fiboCount = scanner.nextInt();
 
-        Fibonacci fibonacci = new Fibonacci(fiboCount);
+        System.out.println("Enter the upper limit of even numbers to display: ");
+        int evenCount = scanner.nextInt();
+
         Even even = new Even(evenCount);
+        Fibonacci fibonacci = new Fibonacci(fiboCount);
 
         Thread thread1 = new Thread(even);
         Thread thread2 = new Thread(fibonacci);

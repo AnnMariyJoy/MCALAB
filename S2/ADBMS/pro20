@@ -1,0 +1,33 @@
+> use test
+switched to db test
+> db.createCollection("students")
+{ "ok" : 1 }
+> db.students.insertMany([{rollno:101,name:"Alex",branch:"MCA"},{rollno:102,name:"Maya",branch:"MBA"},{rollno:103,name:"Niya",branch:"BCA"}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("6615110cc3c3ca2ed9eeae0f"),
+		ObjectId("6615110cc3c3ca2ed9eeae10"),
+		ObjectId("6615110cc3c3ca2ed9eeae11")
+	]
+}
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("6615110cc3c3ca2ed9eeae0f"),
+	"rollno" : 101,
+	"name" : "Alex",
+	"branch" : "MCA"
+}
+{
+	"_id" : ObjectId("6615110cc3c3ca2ed9eeae10"),
+	"rollno" : 102,
+	"name" : "Maya",
+	"branch" : "MBA"
+}
+{
+	"_id" : ObjectId("6615110cc3c3ca2ed9eeae11"),
+	"rollno" : 103,
+	"name" : "Niya",
+	"branch" : "BCA"
+}
+

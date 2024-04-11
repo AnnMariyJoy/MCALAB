@@ -28,14 +28,16 @@ class Fibonacci implements Runnable {
         int b = 1;
         int c;
 
-        System.out.println("Fibonacci: " + a);
-        System.out.println("Fibonacci: " + b);
+        //System.out.println("Fibonacci: " + a);
+       // System.out.println("Fibonacci: " + b);
 
-        for (int i = 2; i <= n; i++) {
-            c = a + b;
-            System.out.println("Fibonacci: "+c);
-            a = b;
-            b = c;
+        for (int i = 0; i < n; i++) {
+           // c = a + b;
+            System.out.println("Fibonacci: "+a);
+            c = b;
+            //a = b;
+            b = a+b;
+             a = c;
         }
     }
 }
@@ -47,7 +49,7 @@ public class Mainpro {
         System.out.println("Enter the number of Fibonacci numbers to generate: ");
         int fiboCount = scanner.nextInt();
 
-        System.out.println("Enter the upper limit of even numbers to display: ");
+        System.out.println("Enter the limit of even numbers to display: ");
         int evenCount = scanner.nextInt();
 
         Even even = new Even(evenCount);

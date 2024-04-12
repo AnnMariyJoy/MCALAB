@@ -1,0 +1,35 @@
+> db.createUser({user:"Admin",pwd:"admin123",roles:["readWrite","dbAdmin"]});
+Successfully added user: { "user" : "Admin", "roles" : [ "readWrite", "dbAdmin" ] }
+> db.createUser({user:"developer",pwd:"dev123",roles:["readWrite"]});
+Successfully added user: { "user" : "developer", "roles" : [ "readWrite" ] }
+> show users
+{
+	"_id" : "Employee.Admin",
+	"userId" : BinData(4,"UEJ/H0J5T72ERVcPq0DaJg=="),
+	"user" : "Admin",
+	"db" : "Employee",
+	"roles" : [
+		{
+			"role" : "readWrite",
+			"db" : "Employee"
+		},
+		{
+			"role" : "dbAdmin",
+			"db" : "Employee"
+		}
+	]
+}
+{
+	"_id" : "Employee.developer",
+	"userId" : BinData(4,"rmyY13NwSXipBKQoOKuGRQ=="),
+	"user" : "developer",
+	"db" : "Employee",
+	"roles" : [
+		{
+			"role" : "readWrite",
+			"db" : "Employee"
+		}
+	]
+}
+> 
+

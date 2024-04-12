@@ -126,5 +126,11 @@ WriteResult({ "nInserted" : 1 })
 { "_id" : ObjectId("6618ca7c91ae297b04ebd894"), "name" : "Steve", "age" : 37, "id" : 2, "sec" : "A", "subject" : [ "maths" ] }
 { "_id" : ObjectId("6618cae291ae297b04ebd897"), "name" : "Nick", "age" : 40, "id" : 4, "sec" : "B", "subject" : [ "english" ] }
 
-> 
+> db.stud.count()
+7
+> db.stud.distinct("name")
+[ "Tony", "Steve", "Natasha", "Bruce", "Nick", "Groot", "Sherin" ]
+> db.stud.distinct("age")
+[ 17, 37, 21, 40, 10, 7 ]
+
 

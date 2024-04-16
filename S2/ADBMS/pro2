@@ -135,4 +135,16 @@ mysql> select *  from Employee;
 |   101 | meenu    | Mca   |   3000 |
 +-------+----------+-------+--------+
 4 rows in set (0.02 sec)
+mysql> delete from Department  where Deptid=203;
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from Department;
++--------+----------+------------+
+| Deptid | Deptname | HeadofDept |
++--------+----------+------------+
+|    201 | Mca      | Amal       |
+|    202 | BBA      | Anju       |
+|    204 | Bca      | Joyel      |
++--------+----------+------------+
+3 rows in set (0.04 sec)
 

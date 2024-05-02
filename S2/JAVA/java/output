@@ -1,0 +1,123 @@
+co6
+1)list of files and directories:
+main.java
+main.class
+main.javafound in the directory
+2)Data read from the file
+import java.io.*;public class mainCopy {	public static void main(String[] args) {			try {			FileReader fr = new FileReader("/home/lab2/Desktop/java/mainCopy.java");						BufferedReader br = new BufferedReader(fr);			FileWriter fw = new FileWriter("/home/lab2/Desktop/java/main.txt", true);			String s; 	while ((s = br.readLine()) != null) {				fw.write(s); 				fw.flush();			}	br.close();			fw.close();            			System.out.println("FILE COPIED");		} catch (IOException e) {						System.out.println("An error occurred. . ."+e);		}	}}
+new file is created
+
+#######
+Enter the no. of Literature Books : 2
+
+Enter the Details of Book 1
+Publisher Name : aa
+Book Name : aa
+Author : ss
+Price : 122
+
+Enter the Details of Book 2
+Publisher Name : ss
+Book Name : ss
+Author : ee
+Price : 123
+Enter the no. of Fiction Books : 1
+
+Enter the Details of Book 1
+Publisher Name : ass
+Book Name : ass
+Author : aas
+Price : 100
+
+Details of Literature Books 
+
+Book 1
+Publisher Name : aa
+Book Name : aa
+Author : ss
+Price : 122.0
+
+Book 2
+Publisher Name : ss
+Book Name : ss
+Author : ee
+Price : 123.0
+
+Details of Fiction Books 
+
+Book 1
+Publisher Name : ass
+Book Name : ass
+Author : aas
+Price : 100.0
+
+
+mark and sports
+Please input the student details. .
+
+Enter the Roll No:
+1
+Enter the Name:
+SherinS
+
+Input the Subject marks. . 
+
+Enter marks for Subject-1:
+30
+Enter marks for Subject-2:
+40
+Enter marks for Subject-3:
+50
+
+Input the Sports data. . 
+
+Enter Event-1:
+runing
+Enter score:
+20
+Enter Event-2
+jump
+Enter score:
+10
+
+REPORT CARD
+
+STUDENT PROFILE
+Roll No: 1
+Name: SherinS
+
+ACADEMIC SCORE
+Subject-1 Marks: 30.0
+Subject-2 Marks: 40.0
+Subject-3 Marks: 50.0
+TOTAL:120.0
+
+SPORTS SCORE
+Event-1: runing
+Score: 20
+Event-2: jump
+Score: 10
+TOTAL:30
+
+lab2@lab2-OptiPlex-380:~/Desktop/java$ java areaComputer
+
+RECTANGLE
+Enter the length and breadth:
+2 3
+Area: 6
+
+SQUARE
+Enter the side:
+2
+Area: 4
+
+TRIANGLE
+Enter the base and height:
+2 4
+Area: 4.0
+
+CIRCLE
+Enter the radius:
+3
+Area: 28.259999999999998
+

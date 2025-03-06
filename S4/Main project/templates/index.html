@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prediction Result</title>
+    <title>Brain Tumor Detection</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
@@ -58,14 +58,14 @@
             border-radius: 50%;
             animation: shootingStar linear infinite;
         }
-        
+
         @keyframes shootingStar {
             from {
-                transform: translate(100vw, -10vh);
+                transform: translate(120vw, -10vh) rotate(0deg);
                 opacity: 1;
             }
             to {
-                transform: translate(-10vw, 100vh);
+                transform: translate(-20vw, 120vh) rotate(45deg);
                 opacity: 0;
             }
         }
@@ -90,71 +90,93 @@
             margin-bottom: 15px;
         }
         
-        h2 {
-            color: #fff;
-            font-size: 24px;
+        .custom-file-upload {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .custom-file-upload:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        input[type="file"] {
+            display: none;
+        }
+        
+        .message-box {
+            display: none;
             margin-top: 10px;
+            padding: 10px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 6px;
+            font-size: 14px;
         }
         
-        p {
-            color: #fff;
-            font-size: 18px;
-        }
-        
-        a {
-            display: inline-block;
+        button {
+            width: 100%;
+            padding: 12px;
             margin-top: 20px;
-            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
             background: linear-gradient(45deg, #ff7eb3, #ff5c9a);
             color: white;
-            text-decoration: none;
-            border-radius: 6px;
             font-size: 16px;
             font-weight: bold;
+            cursor: pointer;
             transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
         }
         
-        a:hover {
+        button:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(255, 94, 154, 0.4);
         }
         
-        .image-preview {
-            margin-top: 20px;
-        }
-        
-        .image-preview img {
-            width: 300px;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
     </style>
 </head>
 <body>
     <div class="water-effect"></div>
     <div id="stars"></div>
     <div class="container">
-        <h1>Prediction Result</h1>
-        <div class="image-preview">
-            <img src="{{ file_path }}" alt="Uploaded Image">
-        </div>
-        <h2>Prediction: {{ label }}</h2>
-        <p>Confidence: {{ confidence | round(2) }}%</p>
-        <a href="/">Try Another Image</a>
+        <h1>Brain Tumor Detection</h1>
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <label class="custom-file-upload" for="fileInput">Choose MRI Image Only!!!
+
+            </label>
+            <input type="file" name="file" id="fileInput" accept="image/*" required>
+            <p class="message-box" id="messageBox">File uploaded successfully!</p>
+            <button type="submit">Predict</button>
+        </form>
     </div>
     <script>
+        document.getElementById("fileInput").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                document.getElementById("messageBox").style.display = "block";
+            }
+        });
+
         function createShootingStars() {
             for (let i = 0; i < 5; i++) {
                 let star = document.createElement("div");
                 star.classList.add("shooting-star");
                 star.style.left = Math.random() * 100 + "vw";
-                star.style.animationDuration = Math.random() * 1.5 + 0.5 + "s";
+                star.style.animationDuration = Math.random() * 1.5 + 1.5 + "s";
                 document.getElementById("stars").appendChild(star);
+
+                setTimeout(() => {
+                    star.remove();
+                }, 2000);
             }
         }
-        setInterval(createShootingStars, 2000);
+        setInterval(createShootingStars, 1500);
     </script>
 </body>
 </html>
